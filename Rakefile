@@ -59,3 +59,33 @@ task :problem_3 do
   largest = prime_factors(600851475143).max
   puts "The largest prime factor is #{largest}"
 end
+
+task :problem_4 do
+  puts 'A palindromic number reads the same both ways. The largest ' \
+       'palindrome made from the product of two 2-digit numbers is '\
+       ' 9009 = 91 × 99.'
+  puts 'Find the largest palindrome made from the product of two 3-digit ' \
+       'numbers.'
+
+  def palindromic?(n)
+    string = n.to_s
+    length = string.length
+    (length.fdiv(2).ceil).times do |i|
+      return false if !string[i].eql?(string[length-1-i])
+    end
+    true
+  end
+
+  palindromes = []
+  (100..999).to_a.reverse_each do |x|
+    (100..999).to_a.reverse_each do |y|
+      if palindromic?(x * y)
+        palindromes << { x: x, y: y, palindrome: (x * y) }
+        break
+      end
+    end
+  end
+  largest = palindromes.max_by { |h| h[:palindrome]}
+  puts "The largest palindrome is " \
+       "#{largest[:palindrome]} = #{largest[:x]} * #{largest[:y]}"
+end
