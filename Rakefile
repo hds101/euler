@@ -133,3 +133,14 @@ task :problem_6 do
   difference = sqr_of_sum - sum_of_sqr
   puts "The difference is #{difference}"
 end
+
+task :problem_7 do
+  require 'prime'
+  puts 'By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, ' \
+       'we can see that the 6th prime is 13.'
+  puts 'What is the 10 001st prime number?'
+
+  # TODO: rewrite
+  prime = Prime.first(10001).last
+  puts "The 10_001st prime is #{prime}"
+end
