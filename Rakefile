@@ -39,7 +39,7 @@ end
 task :problem_3 do
   require 'prime'
   puts 'The prime factors of 13195 are 5, 7, 13 and 29.'
-  puts 'What is the largest prime factor of the number 600851475143 ?'
+  puts 'What is the largest prime factor of the number 600851475143 ?'p
 
   def prime_factors(n)
     return [] if n < 2
@@ -69,6 +69,7 @@ task :problem_4 do
 
   def palindromic?(n)
     string = n.to_s
+    # string.reverse == string
     length = string.length
     (length.fdiv(2).ceil).times do |i|
       return false if !string[i].eql?(string[length-1-i])
@@ -88,4 +89,31 @@ task :problem_4 do
   largest = palindromes.max_by { |h| h[:palindrome]}
   puts "The largest palindrome is " \
        "#{largest[:palindrome]} = #{largest[:x]} * #{largest[:y]}"
+end
+
+task :problem_5 do
+  puts '2520 is the smallest number that can be divided by each of the ' \
+       'numbers from 1 to 10 without any remainder.'
+  puts 'What is the smallest positive number that is evenly divisible by all ' \
+       'of the numbers from 1 to 20?'
+
+  # 1
+  n = 1
+  div = 3
+  step = 1
+  while div <= 20
+    while true
+      ary = (2..div).map { |d| n%d }.uniq
+      if ary.count == 1 && ary[0].zero?
+        step = n
+        div += 1
+        break
+      else
+        n += step
+      end
+    end
+  end
+  puts "The number is #{n}"
+  # 2
+  # [9, 5, 7, 11, 13, 16, 17, 19].inject(:*)
 end
