@@ -35,3 +35,27 @@ task :problem_2 do
   sum = acc.select { |x| (x % 2).zero? }.inject(:+)
   puts "The sum is #{sum}"
 end
+
+task :problem_3 do
+  require 'prime'
+  puts 'The prime factors of 13195 are 5, 7, 13 and 29.'
+  puts 'What is the largest prime factor of the number 600851475143 ?'
+
+  def prime_factors(n)
+    return [] if n < 2
+    factors = []
+    # Array of the prime numbers below number^2
+    Prime.first(Math.sqrt(n)).each do |prime|
+      break if prime**2 > n;
+      while (n % prime).zero?
+        factors << prime
+        n /= prime
+      end
+    end
+    factors << n if n > 1
+    factors
+  end
+
+  largest = prime_factors(600851475143).max
+  puts "The largest prime factor is #{largest}"
+end
