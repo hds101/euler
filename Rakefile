@@ -117,3 +117,19 @@ task :problem_5 do
   # 2
   # [9, 5, 7, 11, 13, 16, 17, 19].inject(:*)
 end
+
+task :problem_6 do
+  puts 'The sum of the squares of the first ten natural numbers is,'
+  puts '1^2 + 2^2 + ... + 10^2 = 385'
+  puts 'The square of the sum of the first ten natural numbers is,'
+  puts '(1 + 2 + ... + 10)^2 = 55^2 = 3025'
+  puts 'Hence the difference between the sum of the squares of the first ten ' \
+       'natural numbers and the square of the sum is 3025 − 385 = 2640.'
+  puts 'Find the difference between the sum of the squares of the first one ' \
+       'hundred natural numbers and the square of the sum.'
+
+  sum_of_sqr = (1..100).map { |x| x ** 2 }.inject(:+)
+  sqr_of_sum = (1..100).inject(:+) ** 2
+  difference = sqr_of_sum - sum_of_sqr
+  puts "The difference is #{difference}"
+end
